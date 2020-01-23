@@ -1,0 +1,31 @@
+.header{
+    color:greenyellow;
+    margin:0 auto;
+    display: top;
+    text-align: right;
+    margin-left: 80%;
+    
+}
+ 
+.header_title{
+    font-size: 30px;
+    color:greenyellow;
+    text-decoration: none;
+}
+
+.rowheader{
+    color:red;
+}
+
+.stockItems{
+    margin-top: 5%;
+    display: block;
+    text-align:justify ;
+    margin-left: 20%;
+}
+
+
+.stockItems{
+    text-align:left ;
+}
+
