@@ -6,14 +6,6 @@ import {Header} from './header';
 import '../css/stocksPage.css';
 import {CurrentStockPrice} from './StocksPrice.js'
  
-// function reload() {
-//     document.location.reload();
-// }
-  
-// setTimeout(reload, 25000);
-
-
-
 function stocksBought(props){
  
     return(
