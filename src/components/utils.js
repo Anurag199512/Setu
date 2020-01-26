@@ -6,7 +6,7 @@ var request=require('sync-request');
 
 export function initializeState(){
   
-    let url='https://work.setu.co/assignments/stock-ui/1a2b3c4d5/portfolio';
+    let url='https://work.setu.co/assignments/stock-ui/anurag12345/portfolio';
       
     var res = request('GET', url);
     
@@ -41,14 +41,11 @@ export function selectedStock(){
 
 export async function buyStock(id,val,stockName){
  
-    let url='https://work.setu.co/assignments/stock-ui/1a2b3c4d5/buy';
+    let url='https://work.setu.co/assignments/stock-ui/anurag12345/buy';
     
-    // let val=document.getElementById(e.target.id).value;
-    // let id=e.target.id;
-
     let data={
         stockId:id,
-        unitsToBuy:val
+        unitsToBuy:Number(val)
     };
     
     const options={
@@ -60,7 +57,7 @@ export async function buyStock(id,val,stockName){
     };
 
     const res=await fetch(url, {...options,body:JSON.stringify(data)});
-    console.log(res.status);
+     
     if(res.status===200)
         {
             document.getElementById('buyingFailed').innerHTML=''
@@ -73,7 +70,7 @@ export async function buyStock(id,val,stockName){
         //window.location.href = '/';
     }    
     else{
-        document.getElementById('buyingFailed').innerHTML='Connection interrupted! Buying failed.'
+        //document.getElementById('buyingFailed').innerHTML='Connection interrupted! Buying failed.'
         alert(`Sorry buying failed for ${stockName}. Try again !`)
 
     }
@@ -82,17 +79,14 @@ export async function buyStock(id,val,stockName){
 
 
 export async function sellStock(id,val,stockName){
-    console.log('here')
-    let url='https://work.setu.co/assignments/stock-ui/1a2b3c4d5/sell';
-    
-    // let val=document.getElementById(e.target.id).value;
-    // let id=e.target.id;
+     
+    let url='https://work.setu.co/assignments/stock-ui/anurag12345/sell';
 
     let data={
         stockId:id,
-        unitsToBuy:val
+        unitsToSell:1
     };
-    
+
     const options={
         method:'POST',
         headers: {
@@ -102,21 +96,24 @@ export async function sellStock(id,val,stockName){
     };
 
     const res=await fetch(url, {...options,body:JSON.stringify(data)});
-    console.log(res.status);
+ 
     if(res.status===200)
         {
-            document.getElementById('buyingFailed').innerHTML=''
-            await res.json();
-            alert(`${val} Stock bought for ${stockName}. Congratulations !!`)
-            window.location.href = '/';
+           // document.getElementById('sellingFailed').innerHTML=''
+            let response=await res.json();
+
+            alert(`${val} Stock of ${stockName} sold for ${response.data.price} .Congratulations !!`)
+            window.location.href = '/sellstocks';
         }
     else if(res.status===403){
-        document.getElementById('buyingFailed').innerHTML='Insufficient balance available. Can not buy this stock.';
+        //document.getElementById('sellingFailed').innerHTML='Insufficient units available. Can not sell this stock.';
+        alert(`Insufficient units available. Can not sell this stock.`)
         //window.location.href = '/';
     }    
     else{
-        document.getElementById('buyingFailed').innerHTML='Connection interrupted! Buying failed.'
-        alert(`Sorry buying failed for ${stockName}. Try again !`)
+        //document.getElementById('sellingFailed').innerHTML='Connection interrupted! Selling process failed.'
+        alert(`Sorry selling failed for ${stockName}. Try again !`)
 
     }
+
 }

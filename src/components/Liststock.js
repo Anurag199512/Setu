@@ -5,23 +5,17 @@ import {buyStock} from './utils';
 export  class Liststock extends React.Component{
     claimStock(e){
         e.preventDefault();
-        console.log(e.target.elements)
-
+        
         for(let i=0;i<e.target.elements.length;++i)
         {
             const id=e.target.elements[i].id;
             const units=e.target.elements[i].value;
             const stockName=e.target.elements[i].className;
-
-            //console.log(id,units,stockName)
             
               if(units.length>0)
                   buyStock(id,units,stockName)
             
         }
-            //console.log('hth',e.target.elements[0].value)
-        
-
     }
 
     render(){

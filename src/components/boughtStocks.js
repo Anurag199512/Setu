@@ -1,35 +1,51 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {selectedStock} from './utils';
-import {Header} from './header';;
+import {selectedStock,sellStock} from './utils';
+import {Header} from './header';
+import '../css/stocksPage.css';
 
-function getTotalUnits(unit){
-    let total=0;
-    for(let i=0;i<unit.length;++i){
-        total=total+Number(unit[i])
-    }
-    return total;
-}
+ 
 function reload() {
-    document.location.reload(document.URL + '#stockList');
-    //document.getElementById('stockList').reload(document.URL + '#stockList');
+    
+        document.location.reload();
   }
   
-  setTimeout(reload, 20000);
+  setTimeout(reload, 25000);
+
+function sellThisStock(e){
+    const id=e.target.id;
+    const units=1;
+    const stockName=e.target.className;
+
+    if(units>0)
+        {
+            const proceed=prompt(`You are about to sell ${units} units of ${stockName}.Type "yes" or "Y" to confirm`);
+         
+            if(proceed.toLowerCase()==='yes' ||proceed.toLowerCase()==='y' )
+              {  
+                sellStock(id,units,stockName)
+               
+              }
+        }
+}
 
 function stocksBought(props){
-    console.log(props)
+ 
     return(
     <div>    
             <div>  
               <Header balance={props.balance}/>
             </div>
-        <div className='stockItems'>       
+
+           
+        
+            <div className='stockItems'>       
         {
             props.statuscode ===200?
             <div> 
             <h2>Your stock collections</h2>
+            { props.stock.length>0?
             <table>
             <thead>
             <tr className='rowheader'>
@@ -45,14 +61,14 @@ function stocksBought(props){
                     return (<tr key={stk.id}>
 
                             <td>{stk.name}</td>
-                            <td>{getTotalUnits(stk.units)}</td>
+                            <td>{stk.units}</td>
                             
                         </tr>)
                 })
             }
             </tbody>
-            </table>
-
+            </table>:<div>You dont have any stock</div>
+        }
             <h2>Current pricing of stocks</h2>
             <table id='stockList'>
                     <thead>
@@ -69,8 +85,7 @@ function stocksBought(props){
                             return (<tr key={stk.id}>
                                     <td>{stk.name}</td>
                                     <td>{stk.price}</td>
-                                    <td><input className={stk.name} id={stk.id} type='number'/></td>
-                                    
+                                    <td><button onClick={sellThisStock} className={stk.name} id={stk.id} type='button'>Sell Stock</button></td>
                                 </tr>)
                         })
                     }
@@ -90,6 +105,7 @@ function stocksBought(props){
 
 const connectedStocksBought=connect((state)=>{
     let  exp={}
+  
     exp=selectedStock()
     var data=[]
     if(!exp.error)

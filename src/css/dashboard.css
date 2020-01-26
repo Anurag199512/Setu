@@ -12,3 +12,11 @@ td{
 .buyingFailed{
     color:red;
 }
+
+
+.dashboard{
+    justify-content: flex-end;
+    display: block;
+     
+    margin-left: 30%;
+}

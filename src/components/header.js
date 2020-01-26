@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 export function Header(props){
     return(
 
-        <div>
+        <div className='pageHeader'>
             <Link className='header_title' to='/'>
                 Setu
             </Link>
