@@ -1,13 +1,13 @@
 import React from 'react';
-import {connect} from 'react-redux'
- 
-import {selectedstock} from './additional'
-import {Header} from './header'
-import {Liststock} from './Liststock'
+import {connect} from 'react-redux';
+import {selectedStock} from './utils';
+import {Header} from './header';
+import {Link} from 'react-router-dom';
+import {Liststock} from './Liststock';
 import '../css/header.css';
 
 function Maincomponent(props){
-    console.log(props)
+    //console.log(props)
     return (
         <div>
 
@@ -18,8 +18,9 @@ function Maincomponent(props){
         <div className='stockItems'>
             {
                 props.statuscode ===200?<div> 
-                <Liststock stocks={props.allStock}/></div> : <div>Error while fethcing data. Check your connection !
-                Clike here to refresh <br/> <button type="utton" onClick="location.reload();">Load stock</button>
+                <Liststock stocks={props.allStock}/></div> : <div>Error while fetching data. Check your connection !   
+                Click here to go to <Link className='urlLink' to='/'>Home Page</Link> 
+                <br/>
                 </div>
             }
         </div>    
@@ -32,14 +33,10 @@ function Maincomponent(props){
 
 const ConnectedMaincomponent=connect((state)=>{
     let  exp={}
-    //console.log(state)
-    exp=selectedstock()
-    //console.log('E',exp)
+    exp=selectedStock()
     var data=[]
-
     if(!exp.error)
         data=exp.getBody()
-    //console.log(data)
 
     return {
         stock:state.stockBought,

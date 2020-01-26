@@ -7,7 +7,7 @@ export function Header(props){
 
         <div>
             <Link className='header_title' to='/'>
-                SetU
+                Setu
             </Link>
 
             <span className='header'>

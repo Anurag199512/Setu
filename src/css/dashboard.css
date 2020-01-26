@@ -8,3 +8,7 @@ td{
     margin: 8px;
     padding:  0 10px;
 }
+
+.buyingFailed{
+    color:red;
+}
