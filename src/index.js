@@ -1,30 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import App from './App';
-import * as serviceWorker from './serviceWorker';
-
-
-// function renderApp(){
-//     console.log('s')
-//     ReactDOM.render(<App />, document.getElementById('root'));
-// }
-// //setInterval(renderApp,200)
-// renderApp();
-
-
- 
+import * as serviceWorker from './serviceWorker'; 
 import {Provider} from 'react-redux';
-//import Thunk from 'redux-thunk'
 import {createStore} from 'redux';
 import './App.css';
 import {App}  from  './components/app';
 import {initializeState} from './components/utils'
 
-
 let defaultState=initializeState();
  
-
 function appRoot() {
   if(!defaultState.error)
     {
@@ -33,19 +18,8 @@ function appRoot() {
 
         case 'initialize':
             return { ...action.newState};      
-            
-        case 'buyStock':
-            return [
-                ...state,
-                action.ob
-            ];
-        case 'sellStock':
-
-          return state.filter((ob)=>{
-                return ob.id!==action.id;
-            })
         
-            default:return state
+        default:return state
     }
       
     }) 
@@ -78,9 +52,6 @@ function appRoot() {
             } 
           })
       }   
-
-    
-
     appRoot()
   }
 }

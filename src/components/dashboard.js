@@ -4,24 +4,16 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import '../css/dashboard.css'
 
-// function getTotalUnits(unit){
-//     let total=0;
-//     for(let i=0;i<unit.length;++i){
-//         total=total+Number(unit[i])
-//     }
-//     return total;
-// }
 
 function Dashboard(props){
-    //console.log(props)
 
     return (<div>
         <Header balance={props.balance}/>
            <div className='dashboard'>
-                Dashboard<br/><br/>
+                 <br/><br/>
                 {
                     props.stockBought.length>0?
-                    (<div>No of Stocks bought by you are {props.stockBought.length} 
+                    (<div>No of Stocks bought by you are {props.stockBought.length}. <br/><br/>
                     <table>
                     <thead>
                         <tr className='rowheader'>

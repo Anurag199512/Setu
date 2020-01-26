@@ -1,8 +1,4 @@
-//import createhistory from  'history/createBrowserHistory'
-
 var request=require('sync-request');
-
-//const history=createhistory()
 
 export function initializeState(){
   
@@ -31,7 +27,6 @@ export function selectedStock(){
         return res
     else
     {
-       
         return {
             error:'Connection error , not able to fetch data'
         };
@@ -66,13 +61,11 @@ export async function buyStock(id,val,stockName){
             window.location.href = '/';
         }
     else if(res.status===403){
-        document.getElementById('buyingFailed').innerHTML='Insufficient balance available. Can not buy this stock.';
-        //window.location.href = '/';
+        alert('Insufficient balance available. Can not buy this stock.')
+
     }    
     else{
-        //document.getElementById('buyingFailed').innerHTML='Connection interrupted! Buying failed.'
         alert(`Sorry buying failed for ${stockName}. Try again !`)
-
     }
 }
 
@@ -99,21 +92,16 @@ export async function sellStock(id,val,stockName){
  
     if(res.status===200)
         {
-           // document.getElementById('sellingFailed').innerHTML=''
             let response=await res.json();
 
             alert(`${val} Stock of ${stockName} sold for ${response.data.price} .Congratulations !!`)
             window.location.href = '/sellstocks';
         }
     else if(res.status===403){
-        //document.getElementById('sellingFailed').innerHTML='Insufficient units available. Can not sell this stock.';
         alert(`Insufficient units available. Can not sell this stock.`)
-        //window.location.href = '/';
     }    
     else{
-        //document.getElementById('sellingFailed').innerHTML='Connection interrupted! Selling process failed.'
         alert(`Sorry selling failed for ${stockName}. Try again !`)
-
     }
 
 }

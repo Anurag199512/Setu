@@ -7,10 +7,9 @@ import {Liststock} from './Liststock';
 import '../css/header.css';
 
 function Maincomponent(props){
-    //console.log(props)
+ 
     return (
         <div>
-
         <div>
             <Header balance={props.balance}/>
         </div>
@@ -18,18 +17,15 @@ function Maincomponent(props){
         <div className='stockItems'>
             {
                 props.statuscode ===200?<div> 
-                <Liststock stocks={props.allStock}/></div> : <div>Error while fetching data. Check your connection !   
+                <Liststock/></div> : <div>Error while fetching data. Check your connection !   
                 Click here to go to <Link className='urlLink' to='/'>Home Page</Link> 
                 <br/>
                 </div>
             }
         </div>    
-        
-        </div>
-        
+    </div>        
     )
 }
-
 
 const ConnectedMaincomponent=connect((state)=>{
     let  exp={}

@@ -1,9 +1,44 @@
 import React from 'react';
 import '../css/dashboard.css';
+import {selectedStock} from './utils';
 import {buyStock} from './utils';
 import '../css/button.css';
 
 export  class Liststock extends React.Component{
+    constructor(props){
+        super(props)
+        let  exp={}
+        exp=selectedStock()
+        var data=[]
+        if(!exp.error)
+            data=exp.getBody()
+      
+        this.state={
+            stocks:(!exp.error)?JSON.parse(data):{}
+        }
+    }
+
+    tick() {
+        
+        let  exp={}
+        exp=selectedStock()
+        var data=[]
+        if(!exp.error)
+            data=exp.getBody()
+
+        this.setState(prevState => ({
+            stocks:((!exp.error)&& data.length >0 && data!== undefined)?JSON.parse(data):prevState.stocks
+        }));
+      }
+
+      componentWillUnmount() {
+        clearInterval(this.interval);
+      }  
+
+    componentDidMount() {
+        this.interval = setInterval(() => this.tick(), 1000);
+      }
+
     claimStock(e){
         e.preventDefault();
         
@@ -39,8 +74,8 @@ export  class Liststock extends React.Component{
                 </thead>
                 <tbody>
                 {
-                    this.props.stocks.data.map((stk)=>{
-                        //console.log(stk)
+                    this.state.stocks.data.map((stk)=>{
+                     
                         return (<tr key={stk.id}>
 
                                 <td>{stk.name}</td>
@@ -53,7 +88,7 @@ export  class Liststock extends React.Component{
                 </tbody>
                 </table>
             <br/><br/>    
-            <button className='buyButton' type='submit'>Buy these Stocks</button>  
+            <button className='buyButton' type='submit'>Buy Stocks</button>  
             </form> 
 
         </div>
