@@ -61,7 +61,7 @@ export class CurrentStockPrice extends React.Component{
                         <tr className='rowheader'>
                             <td>Name</td>
                             <td>Price of 1 stock</td>
-                            <td>Units to Sell</td>
+                            <td>Click to Sell 1 unit</td>
 
                         </tr>
                         </thead>

@@ -59,7 +59,7 @@ export  class Liststock extends React.Component{
         
         <div>
             <div id='buyingFailed'></div>
-            Enter stock units to buy.Blank will be treated as 0 units.<br/><br/>
+            Enter stock units to buy.Empty fields will be treated as 0 units.<br/><br/>
             Available Stock details<br/><br/>
             
             <form onSubmit={this.claimStock}>
@@ -74,7 +74,7 @@ export  class Liststock extends React.Component{
                 </thead>
                 <tbody>
                 {
-                    this.state.stocks.data.map((stk)=>{
+                    this.state.stocks.data?  this.state.stocks.data.map((stk)=>{
                      
                         return (<tr key={stk.id}>
 
@@ -83,7 +83,7 @@ export  class Liststock extends React.Component{
                                 <td><input className={stk.name} id={stk.id} type='number'/></td>
                                 
                             </tr>)
-                    })
+                    }): undefined
                 }
                 </tbody>
                 </table>
