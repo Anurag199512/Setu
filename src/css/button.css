@@ -1,0 +1,10 @@
+.buyButton{
+    background-color:yellowgreen;
+
+    margin:0px;
+    border-color: white;
+    font-size: 16px;
+    padding: 8px;
+
+    border :8px;
+}

@@ -85,7 +85,7 @@ function stocksBought(props){
                             return (<tr key={stk.id}>
                                     <td>{stk.name}</td>
                                     <td>{stk.price}</td>
-                                    <td><button onClick={sellThisStock} className={stk.name} id={stk.id} type='button'>Sell Stock</button></td>
+                                    <td><button style={{backgroundColor:"yellowgreen",margin:"0px",borderColor: "white", fontSize: "16px", padding: "4px", border :"8px"}} onClick={sellThisStock} className={stk.name} id={stk.id} type='button'>Sell Stock</button></td>
                                 </tr>)
                         })
                     }

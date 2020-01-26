@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/dashboard.css';
 import {buyStock} from './utils';
+import '../css/button.css';
 
 export  class Liststock extends React.Component{
     claimStock(e){
@@ -23,7 +24,9 @@ export  class Liststock extends React.Component{
         
         <div>
             <div id='buyingFailed'></div>
+            Enter stock units to buy.Blank will be treated as 0 units.<br/><br/>
             Available Stock details<br/><br/>
+            
             <form onSubmit={this.claimStock}>
                 <table>
                 <thead>
@@ -50,7 +53,7 @@ export  class Liststock extends React.Component{
                 </tbody>
                 </table>
             <br/><br/>    
-            <button type='submit'>Buy these</button>  
+            <button className='buyButton' type='submit'>Buy these Stocks</button>  
             </form> 
 
         </div>
