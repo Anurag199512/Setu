@@ -105,3 +105,18 @@ export async function sellStock(id,val,stockName){
     }
 
 }
+
+
+export function updatedPrice(data){
+    if(data  && data.length >0)    
+        {
+            let stockPrices=[];
+            const dataNew=JSON.parse(data);
+            dataNew.data.map((stock)=>{
+                stockPrices.push(stock.price);
+            })
+            return stockPrices;
+        }    
+
+
+}

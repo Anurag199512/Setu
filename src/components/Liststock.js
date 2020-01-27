@@ -1,8 +1,9 @@
 import React from 'react';
 import '../css/dashboard.css';
-import {selectedStock} from './utils';
+import {selectedStock,updatedPrice} from './utils';
 import {buyStock} from './utils';
 import '../css/button.css';
+import '../css/priceColor.css'
 
 export  class Liststock extends React.Component{
     constructor(props){
@@ -14,8 +15,25 @@ export  class Liststock extends React.Component{
             data=exp.getBody()
       
         this.state={
-            stocks:(!exp.error)?JSON.parse(data):{}
+            stocks:(!exp.error)?JSON.parse(data):{},
+            stockPrice:Array(((!exp.error)?JSON.parse(data):{}).length).fill(0),
+            flag:Array(((!exp.error)?JSON.parse(data):{}).length).fill(undefined)
         }
+    }
+
+    comparePrice(prevState,exp,data,newPrice){
+        let flag=[];
+        if(newPrice){
+            newPrice.map((stk,i)=>{
+                flag.push((stk!==prevState.stockPrice[i] &&  prevState.stockPrice[i])?stk>prevState.stockPrice[i]?true:false:undefined)
+            })
+        }
+
+        return ({
+            stocks:((!exp.error)&& data.length >0 && data!== undefined)?JSON.parse(data):prevState.stocks,
+            stockPrice:newPrice?newPrice:prevState.stockPrice,
+            flag:flag
+        })
     }
 
     tick() {
@@ -26,9 +44,8 @@ export  class Liststock extends React.Component{
         if(!exp.error)
             data=exp.getBody()
 
-        this.setState(prevState => ({
-            stocks:((!exp.error)&& data.length >0 && data!== undefined)?JSON.parse(data):prevState.stocks
-        }));
+        const newPrice=updatedPrice(data)
+        this.setState(prevState=>(this.comparePrice(prevState,exp,data,newPrice)));
       }
 
       componentWillUnmount() {
@@ -69,19 +86,18 @@ export  class Liststock extends React.Component{
                     <td>Name</td>
                     <td>Price of 1 stock</td>
                     <td>No of units to buy</td>
-
+                    
                 </tr>
+                <tr><td><br/></td></tr>
                 </thead>
                 <tbody>
                 {
-                    this.state.stocks.data?  this.state.stocks.data.map((stk)=>{
+                    this.state.stocks.data?  this.state.stocks.data.map((stk,i)=>{
                      
-                        return (<tr key={stk.id}>
-
+                        return (<tr key={stk.id} className={this.state.flag[i]!== undefined ?this.state.flag[i]?'priceUp':'priceDown':'samePrice'}>
                                 <td>{stk.name}</td>
-                                <td>{stk.price}</td>
+                                <td>{stk.price}<span>&nbsp;</span>{this.state.flag[i]!== undefined ?this.state.flag[i]?(<span>&#8593;</span>) :(<span>&#8595;</span>):undefined}</td>
                                 <td><input className={stk.name} id={stk.id} type='number'/></td>
-                                
                             </tr>)
                     }): undefined
                 }

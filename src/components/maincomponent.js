@@ -17,7 +17,7 @@ function Maincomponent(props){
         <div className='stockItems'>
             {
                 props.statuscode ===200?<div> 
-                <Liststock/></div> : <div>Error while fetching data. Check your connection !   
+                <Liststock/></div> : <div>Error while fetching data. Server error occurred !   
                 Click here to go to <Link className='urlLink' to='/'>Home Page</Link> 
                 <br/>
                 </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import * as serviceWorker from './serviceWorker'; 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import './App.css';
@@ -62,5 +61,3 @@ const msg=(<div className="App">
 
 ReactDOM.render(msg, document.getElementById('root'))
 appRoot();
-
-serviceWorker.unregister();

@@ -6,6 +6,8 @@ import {Header} from './header';
 import '../css/stocksPage.css';
 import {CurrentStockPrice} from './StocksPrice.js'
  
+
+
 function stocksBought(props){
  
     return(
@@ -47,7 +49,7 @@ function stocksBought(props){
         <CurrentStockPrice allStock={props.allStock}/>
 
         </div> 
-            :(<div>Error while fetching data. Check your connection !   
+            :(<div>Error while fetching data.Server error occurred!   
             Click here to go to <Link className='urlLink' to='/'>Home Page</Link> 
             <br/> </div>)
         }

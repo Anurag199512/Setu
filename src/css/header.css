@@ -19,7 +19,8 @@
 }
 
 .rowheader{
-    color:red;
+    color:greenyellow;
+    margin-bottom: 10px;
 }
 
 .stockItems{
