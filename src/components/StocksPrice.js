@@ -67,14 +67,14 @@ export class CurrentStockPrice extends React.Component{
                         </thead>
                         <tbody>
                         {   
-                             
+                            this.state.allStock.data?
                                 this.state.allStock.data.map((stk)=>{
                                     return (<tr key={stk.id}>
                                             <td>{stk.name}</td>
                                             <td>{stk.price}</td>
                                             <td><button style={{backgroundColor:"yellowgreen",margin:"0px",borderColor: "white", fontSize: "16px", padding: "4px", border :"8px"}} onClick={this.sellThisStock} className={stk.name} id={stk.id} type='button'>Sell Stock</button></td>
                                         </tr>)
-                                })
+                                }):undefined
                         }
                         </tbody>
                     </table>
