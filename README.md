@@ -13,7 +13,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
 ### `Buying Stock`
-For buying stock you can fill a form and mentioned how much units of each stock you want. You can fill for more than one stock. After filling the number of units for each stock required submit the form by clicking (Buy Stocks) and wait for some time. Confirmation of buying will pop up on the screen.
+For buying stock you can fill a form and mention how much units of each stock you want. You can fill for more than one stock. After filling the number of units for each stock required submit the form by clicking (Buy Stocks) and wait for some time. Confirmation of buying will pop up on the screen.
 
 
 ### `Selling Stock`
