@@ -1,0 +1,10 @@
+{
+  pipeline {
+    stage("build") {
+    echo "build complete"
+    }
+    stage("deploy") {
+        echo "deploy complete"
+    }
+  }
+}
